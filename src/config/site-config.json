@@ -1,0 +1,178 @@
+{
+  "business": {
+    "name": "Smash & Spice",
+    "tagline": "Authentic Middle Eastern Flavors",
+    "description": "Experience the rich taste of traditional Middle Eastern cuisine with our carefully crafted kebabs, wraps, and sides. Made with fresh ingredients and authentic spices.",
+    "phone": "(555) 123-4567",
+    "email": "info@smashandspice.com",
+    "address": "123 Main Street, City, State 12345",
+    "hours": {
+      "monday": { "open": "11:00", "close": "22:00", "closed": false },
+      "tuesday": { "open": "11:00", "close": "22:00", "closed": false },
+      "wednesday": { "open": "11:00", "close": "22:00", "closed": false },
+      "thursday": { "open": "11:00", "close": "22:00", "closed": false },
+      "friday": { "open": "11:00", "close": "23:00", "closed": false },
+      "saturday": { "open": "11:00", "close": "23:00", "closed": false },
+      "sunday": { "open": "12:00", "close": "21:00", "closed": false }
+    },
+    "isOpen": true,
+    "certifications": ["Halal Certified", "Fresh Daily"]
+  },
+  "hero": {
+    "mainHeadline": ["Authentic", "Middle Eastern", "Cuisine"],
+    "subHeadline": "Experience the rich flavors of traditional kebabs, wraps, and sides made with fresh ingredients and authentic spices.",
+    "ctaButtons": {
+      "primary": "Order Now",
+      "secondary": "View Menu"
+    },
+    "slides": {
+      "left": {
+        "title": "Chicken Kebab Special",
+        "description": "Tender chicken marinated in authentic spices and grilled to perfection",
+        "badge": "Most Popular",
+        "badgeColor": "bg-orange-500",
+        "features": ["Fresh Daily", "Halal Certified", "Family Recipe"],
+        "price": "$12.99",
+        "rating": 4.8,
+        "deliveryTime": "25-30 min"
+      },
+      "rightTop": {
+        "title": "Lamb Shawarma",
+        "description": "Slow-cooked lamb with garlic sauce and fresh vegetables",
+        "badge": "Chef's Choice",
+        "badgeColor": "bg-red-500",
+        "features": ["Premium Cut", "Slow Cooked", "Authentic Recipe"],
+        "price": "$14.99",
+        "rating": 4.9,
+        "deliveryTime": "20-25 min"
+      },
+      "rightBottom": {
+        "title": "Falafel Wrap",
+        "description": "Crispy falafel with tahini sauce and fresh salad",
+        "badge": "Vegetarian",
+        "badgeColor": "bg-green-500",
+        "features": ["100% Plant Based", "Gluten Free Option", "Rich in Protein"],
+        "price": "$9.99",
+        "rating": 4.7,
+        "deliveryTime": "15-20 min"
+      }
+    },
+    "images": {
+      "logo": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "leftImage": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "leftImageLabel": "Chicken Kebab",
+      "rightImages": {
+        "top": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+        "topLabel": "Lamb Shawarma",
+        "bottom": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+        "bottomLabel": "Falafel Wrap"
+      }
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "id": 1,
+        "name": "Chicken Kebab",
+        "price": "$12.99",
+        "calories": "450 Cal",
+        "description": "Tender chicken marinated in authentic spices and grilled to perfection",
+        "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+        "combo": false,
+        "category": "kebabs",
+        "available": true,
+        "soldOut": false,
+        "featured": true
+      },
+      {
+        "id": 2,
+        "name": "Lamb Shawarma",
+        "price": "$14.99",
+        "calories": "520 Cal",
+        "description": "Slow-cooked lamb with garlic sauce and fresh vegetables",
+        "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+        "combo": false,
+        "category": "kebabs",
+        "available": true,
+        "soldOut": false,
+        "featured": true
+      },
+      {
+        "id": 3,
+        "name": "Falafel Wrap",
+        "price": "$9.99",
+        "calories": "380 Cal",
+        "description": "Crispy falafel with tahini sauce and fresh salad",
+        "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+        "combo": false,
+        "category": "wraps",
+        "available": true,
+        "soldOut": false,
+        "featured": false
+      }
+    ]
+  },
+  "story": {
+    "title": "Our Story",
+    "subtitle": "A Journey of Authentic Flavors",
+    "content": {
+      "intro": "Welcome to Smash & Spice, where every dish tells a story of tradition, passion, and authentic Middle Eastern flavors.",
+      "tradition": "Our recipes have been passed down through generations, preserving the authentic taste of Middle Eastern cuisine while adapting to modern tastes.",
+      "halal": "We are proud to be Halal certified, ensuring that all our ingredients and preparation methods meet the highest standards of quality and authenticity."
+    },
+    "mainImage": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=500",
+    "values": [
+      {
+        "title": "Fresh Ingredients",
+        "description": "We source the freshest ingredients daily to ensure the best quality in every dish.",
+        "icon": "🍅"
+      },
+      {
+        "title": "Authentic Recipes",
+        "description": "Our recipes are passed down through generations, maintaining the authentic taste of Middle Eastern cuisine.",
+        "icon": "👨‍🍳"
+      },
+      {
+        "title": "Halal Certified",
+        "description": "All our ingredients and preparation methods are Halal certified, meeting the highest standards.",
+        "icon": "✅"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "We'd love to hear from you",
+    "formTitle": "Send us a message",
+    "orderOnlineTitle": "Order Online",
+    "orderOnlineDescription": "Get your favorite dishes delivered right to your door",
+    "quickContactTitle": "Quick Contact"
+  },
+  "links": {
+    "social": {
+      "facebook": "https://facebook.com/smashandspice",
+      "instagram": "https://instagram.com/smashandspice",
+      "twitter": "https://twitter.com/smashandspice"
+    },
+    "delivery": {
+      "ubereats": "https://ubereats.com/smashandspice",
+      "doordash": "https://doordash.com/smashandspice",
+      "grubhub": "https://grubhub.com/smashandspice"
+    }
+  },
+  "footer": {
+    "quickLinks": {
+      "catering": "https://smashandspice.com/catering",
+      "rewards": "https://smashandspice.com/rewards"
+    },
+    "legalLinks": {
+      "privacyPolicy": "https://smashandspice.com/privacy",
+      "termsOfService": "https://smashandspice.com/terms"
+    }
+  },
+  "seo": {
+    "pageTitle": "Smash & Spice - Authentic Middle Eastern Cuisine",
+    "metaDescription": "Experience authentic Middle Eastern flavors with our kebabs, wraps, and sides. Fresh ingredients, Halal certified, and traditional recipes.",
+    "keywords": "middle eastern food, kebabs, shawarma, falafel, halal, authentic cuisine",
+    "ogImageUrl": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200"
+  }
+}
