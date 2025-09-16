@@ -2,8 +2,8 @@ import { SiteConfig } from '../config/siteConfig';
 
 // GitHub API configuration
 const GITHUB_API_BASE = 'https://api.github.com';
-const REPO_OWNER = 'your-username'; // Replace with your GitHub username
-const REPO_NAME = 'your-repo-name'; // Replace with your repository name
+const REPO_OWNER = 'qamarshahid'; // GitHub username
+const REPO_NAME = 'smash-and-spice'; // Repository name
 const CONFIG_FILE_PATH = 'src/config/site-config.json';
 const BRANCH = 'main'; // or 'master' depending on your default branch
 
