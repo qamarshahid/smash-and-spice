@@ -7,9 +7,13 @@ echo "🚀 Deploying Smash & Spice to GitHub Pages..."
 echo "📦 Building project..."
 npm run build
 
-# Add dist folder to git
-echo "📁 Adding dist folder to git..."
-git add dist/
+# Copy built files to root for GitHub Pages
+echo "📁 Copying built files to root directory..."
+cp -r dist/* .
+
+# Add all files to git
+echo "📁 Adding files to git..."
+git add .
 
 # Commit the build
 echo "💾 Committing build..."
