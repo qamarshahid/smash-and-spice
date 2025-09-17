@@ -1,0 +1,16 @@
+{
+  "name": "Smash and Spice",
+  "short_name": "Smash & Spice",
+  "description": "Authentic Pakistani Cuisine in Highland Park, NJ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "./assets/favicon-16x16-DZMxTxTy-DZMxTxTy.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}
