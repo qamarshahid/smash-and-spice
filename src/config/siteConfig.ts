@@ -163,6 +163,9 @@ export interface SiteConfig {
   };
 }
 
+// Force config refresh by updating version
+const CONFIG_VERSION = '1.1.0';
+
 export const defaultSiteConfig: SiteConfig = {
   business: {
     name: "Smash and Spice",

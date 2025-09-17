@@ -26,6 +26,18 @@ interface SiteConfigProviderProps {
 }
 
 export const SiteConfigProvider: React.FC<SiteConfigProviderProps> = ({ children }) => {
+  // Clear localStorage if config is outdated (force refresh for deployment)
+  const clearOutdatedConfig = () => {
+    const lastUpdate = localStorage.getItem('smashandspice-config-version');
+    const currentVersion = '1.1.0'; // Increment this to force refresh
+    if (lastUpdate !== currentVersion) {
+      localStorage.removeItem('smashandspice-config');
+      localStorage.setItem('smashandspice-config-version', currentVersion);
+    }
+  };
+
+  clearOutdatedConfig();
+
   const [config, setConfig] = useState<SiteConfig>(getSiteConfig());
   const [isGitHubConnected, setIsGitHubConnected] = useState(false);
   const [lastSaveStatus, setLastSaveStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
