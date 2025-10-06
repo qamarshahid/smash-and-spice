@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, ArrowRight, Star, Search, Beef, Coffee, Pizza, Circle } from 'lucide-react';
+import { X, ArrowRight, Star, Search, Beef, Coffee, Pizza, Circle, Sandwich } from 'lucide-react';
 import { useSiteConfig } from '../contexts/SiteConfigContext';
 
 const Menu = () => {
@@ -17,6 +17,7 @@ const Menu = () => {
     { id: 'kebabs', name: 'Kebabs', icon: Beef, color: 'text-red-500' },
     { id: 'rice-platters', name: 'Rice Platters', icon: Circle, color: 'text-green-500' },
     { id: 'burgers', name: 'Burgers', icon: Circle, color: 'text-orange-500' },
+    { id: 'wraps', name: 'Wraps', icon: Sandwich, color: 'text-emerald-500' },
     { id: 'sides', name: 'Sides', icon: Pizza, color: 'text-purple-500' },
     { id: 'drinks', name: 'Drinks', icon: Coffee, color: 'text-blue-500' }
   ];

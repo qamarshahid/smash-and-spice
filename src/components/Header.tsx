@@ -39,9 +39,9 @@ const Header = () => {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img 
-              src={config.hero.images.logo} 
-              alt="Smash n Spice Logo"
+            <img
+              src={config.hero.images.logo}
+              alt={`${config.business.name} logo`}
               className="w-12 h-12 object-contain"
             />
             <div>

@@ -164,7 +164,7 @@ export interface SiteConfig {
 }
 
 // Force config refresh by updating version
-const CONFIG_VERSION = '1.1.0';
+export const CONFIG_VERSION = '1.1.0';
 
 export const defaultSiteConfig: SiteConfig = {
   business: {
@@ -246,7 +246,7 @@ export const defaultSiteConfig: SiteConfig = {
   },
 
   menu: {
-    categories: ["highlights", "kebabs", "rice-platters", "burgers", "sides", "drinks"],
+    categories: ["highlights", "kebabs", "rice-platters", "burgers", "wraps", "sides", "drinks"],
     items: [
       {
         id: 1,
@@ -334,6 +334,27 @@ export const defaultSiteConfig: SiteConfig = {
       },
       {
         id: 9,
+        name: "Chicken Shawarma Wrap",
+        price: "$12.49",
+        calories: "620 Cal",
+        description: "Slow-roasted chicken with garlic sauce, pickled turnips, and fresh vegetables in warm pita",
+        image: "https://images.unsplash.com/photo-1604908177089-70d5ac43e695?w=600&h=400&fit=crop&auto=format",
+        category: "wraps",
+        available: true,
+        featured: true
+      },
+      {
+        id: 10,
+        name: "Falafel Wrap",
+        price: "$10.49",
+        calories: "540 Cal",
+        description: "Crispy falafel, creamy hummus, and crunchy vegetables drizzled with tahini sauce",
+        image: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=600&h=400&fit=crop&auto=format",
+        category: "wraps",
+        available: true
+      },
+      {
+        id: 11,
         name: "Mixed Grill Rice",
         price: "$19.99",
         calories: "1150 Cal",
@@ -343,7 +364,7 @@ export const defaultSiteConfig: SiteConfig = {
         available: true
       },
       {
-        id: 10,
+        id: 12,
         name: "Fish Over Rice",
         price: "$16.99",
         calories: "780 Cal",
@@ -353,7 +374,7 @@ export const defaultSiteConfig: SiteConfig = {
         available: true
       },
       {
-        id: 11,
+        id: 13,
         name: "Spicy Chicken Wings",
         price: "$9.99",
         calories: "450 Cal",
@@ -363,7 +384,7 @@ export const defaultSiteConfig: SiteConfig = {
         available: true
       },
       {
-        id: 12,
+        id: 14,
         name: "Fresh Fruit Smoothie",
         price: "$6.99",
         calories: "280 Cal",
@@ -373,7 +394,7 @@ export const defaultSiteConfig: SiteConfig = {
         available: true
       },
       {
-        id: 13,
+        id: 15,
         name: "Caesar Salad",
         price: "$8.99",
         calories: "320 Cal",
@@ -383,7 +404,7 @@ export const defaultSiteConfig: SiteConfig = {
         available: true
       },
       {
-        id: 14,
+        id: 16,
         name: "Chocolate Milkshake",
         price: "$5.99",
         calories: "420 Cal",
@@ -469,8 +490,16 @@ export const defaultSiteConfig: SiteConfig = {
 // Local storage functions
 export const getSiteConfig = (): SiteConfig => {
   if (typeof window === 'undefined') return defaultSiteConfig;
-  
+
   const stored = localStorage.getItem('smashandspice-config');
+  const storedVersion = localStorage.getItem('smashandspice-config-version');
+
+  if (storedVersion !== CONFIG_VERSION) {
+    localStorage.removeItem('smashandspice-config');
+    localStorage.setItem('smashandspice-config-version', CONFIG_VERSION);
+    return defaultSiteConfig;
+  }
+
   if (stored) {
     try {
       return { ...defaultSiteConfig, ...JSON.parse(stored) };
@@ -485,9 +514,11 @@ export const getSiteConfig = (): SiteConfig => {
 export const setSiteConfig = (config: SiteConfig): void => {
   if (typeof window === 'undefined') return;
   localStorage.setItem('smashandspice-config', JSON.stringify(config));
+  localStorage.setItem('smashandspice-config-version', CONFIG_VERSION);
 };
 
 export const resetSiteConfig = (): void => {
   if (typeof window === 'undefined') return;
   localStorage.removeItem('smashandspice-config');
+  localStorage.removeItem('smashandspice-config-version');
 };
