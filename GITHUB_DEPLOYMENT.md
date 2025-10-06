@@ -61,10 +61,10 @@ This guide explains how to deploy your website to GitHub Pages with a fully func
 2. **Build and Deploy**
    ```bash
    npm run build
-   git add dist/
-   git commit -m "Deploy to GitHub Pages"
-   git push origin main
+   ./deploy.sh
    ```
+   The deploy script mirrors the manual steps by copying the contents of `dist/` to the repository root, committing the
+   generated files, and pushing them to the `main` branch so GitHub Pages can serve the updated build.
 
 ### **Step 4: Configure Admin Access**
 

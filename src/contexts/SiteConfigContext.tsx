@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { getSiteConfig, setSiteConfig, SiteConfig } from '../config/siteConfig';
+import { CONFIG_VERSION, getSiteConfig, setSiteConfig, SiteConfig } from '../config/siteConfig';
 import { githubApi, getStoredGitHubToken } from '../services/githubApi';
 
 interface SiteConfigContextType {
@@ -29,10 +29,9 @@ export const SiteConfigProvider: React.FC<SiteConfigProviderProps> = ({ children
   // Clear localStorage if config is outdated (force refresh for deployment)
   const clearOutdatedConfig = () => {
     const lastUpdate = localStorage.getItem('smashandspice-config-version');
-    const currentVersion = '1.1.0'; // Increment this to force refresh
-    if (lastUpdate !== currentVersion) {
+    if (lastUpdate !== CONFIG_VERSION) {
       localStorage.removeItem('smashandspice-config');
-      localStorage.setItem('smashandspice-config-version', currentVersion);
+      localStorage.setItem('smashandspice-config-version', CONFIG_VERSION);
     }
   };
 
