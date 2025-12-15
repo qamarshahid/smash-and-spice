@@ -1,8 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { restaurantInfo } from '../config/restaurantInfo';
 
 export default function Footer() {
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId: string, path: string) => {
+    navigate(path);
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
   return (
     <footer className="bg-gray-950 text-white py-10 sm:py-12 md:py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,36 +64,36 @@ export default function Footer() {
             <h3 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3">
               <li>
-                <Link
-                  to="/"
+                <button
+                  onClick={() => scrollToSection('home', '/')}
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Home
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  to="/story"
+                <button
+                  onClick={() => scrollToSection('about', '/story')}
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Our Story
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  to="/menu"
+                <button
+                  onClick={() => scrollToSection('menu', '/menu')}
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Menu
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  to="/contact"
+                <button
+                  onClick={() => scrollToSection('contact', '/contact')}
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Visit Us
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

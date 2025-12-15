@@ -1,8 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Phone } from 'lucide-react';
 import { restaurantInfo } from '../config/restaurantInfo';
 
 export default function Hero() {
+  const navigate = useNavigate();
+
+  const scrollToMenu = () => {
+    navigate('/menu');
+    setTimeout(() => {
+      const element = document.getElementById('menu');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   const formatPhoneForTel = (phone: string) => {
     const digits = phone.replace(/\D/g, '');
@@ -14,7 +25,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-gray-950 pt-24 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center bg-gray-950 pt-24 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse"></div>
@@ -66,12 +77,12 @@ export default function Hero() {
 
           {/* Simple buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-8 sm:mt-12 px-4 animate-fade-in-up" style={{ animationDelay: '1.1s', opacity: 0 }}>
-            <Link
-              to="/menu"
-              className="w-full sm:w-auto bg-red-600 text-white px-8 sm:px-10 py-3 text-base sm:text-lg font-medium hover:bg-red-700 transition-colors text-center"
+            <button
+              onClick={scrollToMenu}
+              className="w-full sm:w-auto bg-red-600 text-white px-8 sm:px-10 py-3 text-base sm:text-lg font-medium hover:bg-red-700 transition-colors"
             >
               View Menu
-            </Link>
+            </button>
             <a
               href={`tel:+${formatPhoneForTel(restaurantInfo.phone)}`}
               className="w-full sm:w-auto flex items-center justify-center gap-2 text-white border border-gray-700 px-8 sm:px-10 py-3 text-base sm:text-lg font-medium hover:border-gray-600 hover:bg-gray-900 transition-colors"
