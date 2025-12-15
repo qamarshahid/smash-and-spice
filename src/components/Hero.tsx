@@ -55,9 +55,6 @@ export default function Hero() {
             <p className="text-lg sm:text-2xl md:text-3xl text-gray-400 font-light animate-fade-in-up px-4" style={{ animationDelay: '0.7s' }}>
               Famous Chapli Platters & Hand-Smashed Burgers
             </p>
-            <p className="text-base sm:text-lg text-gray-500 animate-fade-in-up px-4" style={{ animationDelay: '0.8s', opacity: 0 }}>
-              Best Chapli Platters, Smash Burgers & Zinger Burgers Near Me
-            </p>
           </div>
 
           {/* Simple description */}
