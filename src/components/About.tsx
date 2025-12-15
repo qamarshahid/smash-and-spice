@@ -11,7 +11,7 @@ export default function About() {
 
         <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-300 leading-relaxed">
           <p>
-            At 18, I started working in restaurant kitchens, grinding every day to support my family and cover expenses. 
+            At 16, I started working in restaurant kitchens, grinding every day to support my family and cover expenses. 
             Long hours, low pay, but I was learning. Every shift taught me something new about food, about people, about what makes a great meal.
           </p>
           
