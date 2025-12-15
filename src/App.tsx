@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -162,35 +162,65 @@ function Navigation() {
 // Handle route-based scrolling
 function ScrollHandler() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const scrollToSection = () => {
       let sectionId = '';
+      let path = location.pathname;
       
-      if (location.pathname === '/menu') {
+      // Handle GitHub Pages redirect format: /?/menu
+      // The 404.html redirects to /?/menu, so pathname will be /?/menu
+      if (path.includes('/?/')) {
+        // Extract route from /?/menu format
+        const route = path.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
+        // Update URL to clean format and navigate
+        if (route) {
+          navigate(`/${route}`, { replace: true });
+          path = `/${route}`;
+        } else {
+          // If no route found, go to home
+          navigate('/', { replace: true });
+          path = '/';
+        }
+      }
+      
+      // Also check window.location for the actual URL (in case React Router hasn't updated yet)
+      const windowPath = window.location.pathname;
+      if (windowPath.includes('/?/') && !path.includes('/?/')) {
+        const route = windowPath.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
+        if (route) {
+          navigate(`/${route}`, { replace: true });
+          path = `/${route}`;
+        }
+      }
+      
+      // Determine section based on route
+      if (path === '/menu') {
         sectionId = 'menu';
-      } else if (location.pathname === '/story') {
+      } else if (path === '/story') {
         sectionId = 'about';
-      } else if (location.pathname === '/gallery') {
+      } else if (path === '/gallery') {
         sectionId = 'gallery';
-      } else if (location.pathname === '/contact') {
+      } else if (path === '/contact') {
         sectionId = 'contact';
-      } else if (location.pathname === '/') {
+      } else if (path === '/' || path === '') {
         sectionId = 'home';
       }
 
       if (sectionId) {
+        // Wait a bit longer for page to render
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 100);
+        }, 300);
       }
     };
 
     scrollToSection();
-  }, [location]);
+  }, [location, navigate]);
 
   return null;
 }
