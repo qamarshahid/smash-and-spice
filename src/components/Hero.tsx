@@ -60,7 +60,8 @@ export default function Hero() {
           {/* Simple description */}
           <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mt-6 sm:mt-8 px-4 animate-fade-in-up" style={{ animationDelay: '0.9s', opacity: 0 }}>
             Authentic flavors perfected through years of experience. 
-            From our kitchen to your table, every dish tells our story.
+            From our kitchen to your table, every dish tells our story. 
+            Serving Highland Park, New Brunswick, Edison, Piscataway, and surrounding areas.
           </p>
           
           <div className="mt-4 sm:mt-6 px-4 animate-fade-in-up" style={{ animationDelay: '1s', opacity: 0 }}>
