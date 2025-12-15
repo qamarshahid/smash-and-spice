@@ -169,26 +169,33 @@ function ScrollHandler() {
       let sectionId = '';
       let path = location.pathname;
       
+      // Check window.location first for GitHub Pages redirect format: /?/menu
+      // The 404.html redirects to /?/menu, and we need to check the actual browser URL
+      const fullUrl = window.location.href;
+      const urlPath = window.location.pathname;
+      
       // Handle GitHub Pages redirect format: /?/menu
-      // The 404.html redirects to /?/menu, so pathname will be /?/menu
-      if (path.includes('/?/')) {
+      // The pathname might be /?/menu or just /, so check both
+      if (urlPath.includes('/?/')) {
         // Extract route from /?/menu format
-        const route = path.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
-        // Update URL to clean format and navigate
+        const route = urlPath.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
         if (route) {
           navigate(`/${route}`, { replace: true });
           path = `/${route}`;
-        } else {
-          // If no route found, go to home
-          navigate('/', { replace: true });
-          path = '/';
+        }
+      } else if (urlPath === '/' && fullUrl.includes('/?/')) {
+        // Sometimes the pathname is / but the full URL has /?/menu
+        const routeMatch = fullUrl.match(/\/\?\/([^?&#]+)/);
+        if (routeMatch && routeMatch[1]) {
+          const route = routeMatch[1].replace(/~and~/g, '&');
+          navigate(`/${route}`, { replace: true });
+          path = `/${route}`;
         }
       }
       
-      // Also check window.location for the actual URL (in case React Router hasn't updated yet)
-      const windowPath = window.location.pathname;
-      if (windowPath.includes('/?/') && !path.includes('/?/')) {
-        const route = windowPath.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
+      // Also check React Router location pathname
+      if (path.includes('/?/')) {
+        const route = path.split('/?/')[1]?.replace(/~and~/g, '&').split('?')[0].split('#')[0] || '';
         if (route) {
           navigate(`/${route}`, { replace: true });
           path = `/${route}`;
@@ -209,16 +216,26 @@ function ScrollHandler() {
       }
 
       if (sectionId) {
-        // Wait a bit longer for page to render
+        // Wait for page to fully render before scrolling
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
+            // Scroll to element
             element.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // If element not found, try again after a longer delay
+            setTimeout(() => {
+              const retryElement = document.getElementById(sectionId);
+              if (retryElement) {
+                retryElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 500);
           }
-        }, 300);
+        }, 400);
       }
     };
 
+    // Run immediately and also on location change
     scrollToSection();
   }, [location, navigate]);
 
