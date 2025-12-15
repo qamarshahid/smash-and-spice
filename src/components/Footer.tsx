@@ -1,11 +1,8 @@
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { restaurantInfo } from '../config/restaurantInfo';
 
-interface FooterProps {
-  scrollToSection: (id: string) => void;
-}
-
-export default function Footer({ scrollToSection }: FooterProps) {
+export default function Footer() {
   return (
     <footer className="bg-gray-950 text-white py-10 sm:py-12 md:py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,36 +53,36 @@ export default function Footer({ scrollToSection }: FooterProps) {
             <h3 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Quick Links</h3>
             <ul className="space-y-2 sm:space-y-3">
               <li>
-                <button
-                  onClick={() => scrollToSection('home')}
+                <Link
+                  to="/"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Home
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('about')}
+                <Link
+                  to="/story"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Our Story
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('menu')}
+                <Link
+                  to="/menu"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Menu
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => scrollToSection('contact')}
+                <Link
+                  to="/contact"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Visit Us
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
