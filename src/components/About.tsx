@@ -18,7 +18,7 @@ export default function About() {
           <p>
             Around the same time, I started making content. Just sharing what I was cooking, what I was learning. 
             Nothing fancy—just real food, real stories. Slowly, people started following. Really following. 
-            That community grew to over <span className="text-red-500 font-semibold">400,000 followers</span>, and they weren't just numbers. 
+            That community grew to over <span className="text-red-500 font-semibold">450,000 followers</span>, and they weren't just numbers. 
             They were people who believed in what I was doing.
           </p>
           
