@@ -18,7 +18,7 @@ export default function Footer({ scrollToSection }: FooterProps) {
             />
             <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-md mb-4 sm:mb-6">
               Hand-smashed burgers made with love and the finest local ingredients.
-              Every bite is an experience worth sharing. Serving Highland Park, New Brunswick, Edison, Piscataway, North Brunswick, East Brunswick, South River, Metuchen, South Plainfield, Franklin Township, Somerset, Sayreville, Milltown, Middlesex, and surrounding New Jersey areas.
+              Every bite is an experience worth sharing.
             </p>
             <div className="flex gap-4">
               {restaurantInfo.socialMedia.facebook && (

@@ -132,8 +132,7 @@ export default function MenuSection() {
             What's Cooking?
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
-            Everything made fresh to order. Quality you can taste. 
-            <span className="block mt-2 text-sm sm:text-base">Find the best Chapli Platters near me, Smash Burgers near me, and Zinger Burgers near me in Highland Park, New Brunswick, Edison, Piscataway, and surrounding areas.</span>
+            Everything made fresh to order. Quality you can taste.
           </p>
         </div>
 
