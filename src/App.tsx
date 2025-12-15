@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import HomePage from './pages/HomePage';
 import MenuPage from './pages/MenuPage';
@@ -149,9 +149,35 @@ function Navigation() {
   );
 }
 
+// Handle GitHub Pages 404 redirect
+function RedirectHandler() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if we're on a 404 redirect from GitHub Pages
+    // The 404.html redirects to /?/path, so we check the pathname
+    if (location.pathname.includes('/?/')) {
+      // Extract the actual path from the pathname
+      const actualPath = location.pathname.replace('/?/', '/').replace(/~and~/g, '&');
+      navigate(actualPath, { replace: true });
+    } else if (location.search) {
+      // Also check query string format
+      const searchParams = new URLSearchParams(location.search);
+      const redirectPath = searchParams.get('redirect');
+      if (redirectPath) {
+        navigate(redirectPath, { replace: true });
+      }
+    }
+  }, [location, navigate]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <RedirectHandler />
       <div className="min-h-screen bg-gray-950">
         <Navigation />
         <GrandOpeningBanner />
