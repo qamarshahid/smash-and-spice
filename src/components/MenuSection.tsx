@@ -96,7 +96,7 @@ export default function MenuSection() {
     {
       name: 'DRINKS',
       items: [
-        { name: 'Shakes', price: '$8.99', variants: '(Strawberry/Chocolate/Vanilla/Oreo)' },
+        { name: 'Shakes', price: '$7.99', variants: '(Strawberry/Chocolate/Vanilla)' },
         { name: 'Mojitos', price: '$5.99', variants: '(Mint/Mango)' },
         { name: 'Mango Lassi', price: '$4.99' },
         { name: 'Jaritos Mandarin', price: '$2.99' },
