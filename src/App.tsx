@@ -7,8 +7,10 @@ import MenuSection from './components/MenuSection';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
+import FAQs from './components/FAQs';
 import Footer from './components/Footer';
 import GrandOpeningBanner from './components/GrandOpeningBanner';
+import SEOHead from './components/SEOHead';
 
 function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -87,6 +89,14 @@ function Navigation() {
               Visit
             </button>
             <button
+              onClick={() => scrollToSection('faqs', '/faqs')}
+              className={`px-4 py-2 rounded-lg font-medium transition-all hover:bg-white/10 ${
+                isActive('/faqs') ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              FAQs
+            </button>
+            <button
               onClick={() => scrollToSection('contact', '/contact')}
               className="ml-4 bg-red-600 text-white px-6 py-2.5 rounded-lg hover:bg-red-700 transition-colors font-semibold"
             >
@@ -145,6 +155,14 @@ function Navigation() {
               }`}
             >
               Visit
+            </button>
+            <button
+              onClick={() => scrollToSection('faqs', '/faqs')}
+              className={`block w-full text-left px-4 py-3 rounded-lg font-medium hover:bg-white/10 transition-all ${
+                isActive('/faqs') ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              FAQs
             </button>
             <button
               onClick={() => scrollToSection('contact', '/contact')}
@@ -211,6 +229,8 @@ function ScrollHandler() {
         sectionId = 'gallery';
       } else if (path === '/contact') {
         sectionId = 'contact';
+      } else if (path === '/faqs') {
+        sectionId = 'faqs';
       } else if (path === '/' || path === '') {
         sectionId = 'home';
       }
@@ -242,6 +262,74 @@ function ScrollHandler() {
   return null;
 }
 
+// Component that renders all sections (single-page scrolling experience)
+// This keeps the user experience of scrolling through all content on one page
+// while allowing proper SEO routing
+function AllSections() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  // Define SEO content for each route
+  const seoContent = {
+    '/': {
+      title: 'Smash & Spice | Authentic Zabiha Halal Burgers & Chapli Platters in Highland Park, NJ',
+      description: 'Smash & Spice - Authentic Zabiha halal restaurant in Highland Park, NJ. Famous chapli platters, hand-smashed burgers, and zinger burgers. Open 11AM-10PM. Located at 323 Raritan Ave.',
+      ogTitle: 'Smash & Spice - Halal Restaurant Highland Park, NJ',
+      ogDescription: 'Authentic Zabiha halal food in Highland Park, NJ. Famous chapli platters, hand-smashed burgers, and zinger burgers.',
+    },
+    '/menu': {
+      title: 'Menu - Smash & Spice | Freshly Made Halal Burgers & Chapli Platters in Highland Park, NJ',
+      description: 'View our complete menu featuring authentic Zabiha halal burgers, chapli platters, wings, wraps, and more. Freshly made to order in Highland Park, NJ.',
+      ogTitle: 'Menu - Smash & Spice | Halal Restaurant Highland Park, NJ',
+      ogDescription: 'Freshly made halal burgers and chapli platters. View our complete menu with prices and options.',
+    },
+    '/story': {
+      title: 'Our Story - Smash & Spice | Authentic Halal Restaurant Highland Park, NJ',
+      description: 'Learn about the journey behind Smash & Spice. From kitchen experience to 450,000+ followers, discover our passion for authentic halal food.',
+      ogTitle: 'Our Story - Smash & Spice',
+      ogDescription: 'The journey behind Smash & Spice. Authentic halal food made with passion and dedication.',
+    },
+    '/gallery': {
+      title: 'Gallery - Smash & Spice | Halal Restaurant Photos Highland Park, NJ',
+      description: 'View photos of our delicious halal food, restaurant atmosphere, and customer favorites at Smash & Spice in Highland Park, NJ.',
+      ogTitle: 'Gallery - Smash & Spice',
+      ogDescription: 'Photos of our authentic halal food and restaurant in Highland Park, NJ.',
+    },
+    '/contact': {
+      title: 'Visit Us - Smash & Spice | Halal Restaurant Highland Park, NJ | 323 Raritan Ave',
+      description: 'Visit Smash & Spice at 323 Raritan Ave, Highland Park, NJ. Open 11AM-10PM. Call (848) 228-4033 to order. Authentic Zabiha halal food.',
+      ogTitle: 'Visit Us - Smash & Spice | Highland Park, NJ',
+      ogDescription: 'Visit us at 323 Raritan Ave, Highland Park, NJ. Open 11AM-10PM. Call to order authentic halal food.',
+    },
+    '/faqs': {
+      title: 'FAQs - Smash & Spice | Frequently Asked Questions | Halal Restaurant Highland Park, NJ',
+      description: 'Frequently asked questions about Smash & Spice. Learn about our halal food, menu items, hours, and location in Highland Park, NJ.',
+      ogTitle: 'FAQs - Smash & Spice',
+      ogDescription: 'Frequently asked questions about our authentic Zabiha halal restaurant in Highland Park, NJ.',
+    },
+  };
+
+  const currentSEO = seoContent[path as keyof typeof seoContent] || seoContent['/'];
+
+  return (
+    <>
+      <SEOHead
+        title={currentSEO.title}
+        description={currentSEO.description}
+        ogTitle={currentSEO.ogTitle}
+        ogDescription={currentSEO.ogDescription}
+      />
+      <Hero />
+      <MenuSection />
+      <About />
+      <Gallery />
+      <Testimonials />
+      <Contact />
+      <FAQs />
+    </>
+  );
+}
+
 function App() {
   return (
     <Router>
@@ -252,16 +340,15 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="/*" element={
-              <>
-                <Hero />
-                <MenuSection />
-                <About />
-                <Gallery />
-                <Testimonials />
-                <Contact />
-              </>
-            } />
+            {/* All routes show all sections for single-page scrolling experience */}
+            <Route path="/" element={<AllSections />} />
+            <Route path="/menu" element={<AllSections />} />
+            <Route path="/story" element={<AllSections />} />
+            <Route path="/gallery" element={<AllSections />} />
+            <Route path="/contact" element={<AllSections />} />
+            <Route path="/faqs" element={<AllSections />} />
+            {/* Catch-all route */}
+            <Route path="/*" element={<AllSections />} />
           </Routes>
         </main>
 

@@ -20,6 +20,8 @@ export const restaurantInfo = {
     twitter: "", // Add if you have a Twitter account
   },
   instagramHandle: "@smashnspice",
+  // Delivery Platforms
+  doordash: "https://www.doordash.com/store/smash-and-spice-highland-park-38903149/88922151/",
   // Gallery Images - Add your restaurant photos here!
   // You can use:
   // 1. Images from public folder: "/your-image.jpg" (put images in the public folder)

@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock, Phone } from 'lucide-react';
+import { MapPin, Clock, Phone, ShoppingBag } from 'lucide-react';
 import { restaurantInfo } from '../config/restaurantInfo';
+import DoorDashModal from './DoorDashModal';
 
 export default function Hero() {
   const navigate = useNavigate();
+  const [showDoorDashModal, setShowDoorDashModal] = useState(false);
 
   const scrollToMenu = () => {
     navigate('/menu');
@@ -34,10 +37,10 @@ export default function Hero() {
 
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 relative z-10">
         <div className="text-center space-y-6 sm:space-y-8">
-          {/* Grand Opening Announcement */}
+          {/* Now Open Announcement */}
           <div className="mb-4 sm:mb-6">
-            <p className="text-red-500 text-base sm:text-lg font-medium">
-              Opening December 18, 2025
+            <p className="text-green-500 text-base sm:text-lg font-medium">
+              Now Open! 🎉
             </p>
           </div>
 
@@ -58,8 +61,10 @@ export default function Hero() {
                 </span>
               </span>
             </h1>
+            {/* Additional H1 for SEO - Google needs clear business name */}
+            <h1 className="sr-only">Smash and Spice</h1>
             <p className="text-lg sm:text-2xl md:text-3xl text-gray-400 font-light animate-fade-in-up px-4" style={{ animationDelay: '0.7s' }}>
-              Famous Chapli Platters & Hand-Smashed Burgers
+              Authentic Zabiha Halal Burgers & Chapli Platters in Highland Park, NJ
             </p>
           </div>
 
@@ -90,26 +95,70 @@ export default function Hero() {
               <Phone size={18} />
               Call to Order
             </a>
+            {restaurantInfo.doordash && (
+              <button
+                onClick={() => setShowDoorDashModal(true)}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-orange-500 text-white px-8 sm:px-10 py-3 text-base sm:text-lg font-medium hover:bg-orange-600 transition-colors"
+              >
+                <ShoppingBag size={18} />
+                Order on DoorDash
+              </button>
+            )}
           </div>
 
-          {/* Address and Hours */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mt-12 sm:mt-16 text-gray-400 px-4 text-sm sm:text-base">
-            <a
-              href={restaurantInfo.googleMapsDirections}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-white transition-colors"
-            >
-              <MapPin size={18} />
-              <span>{restaurantInfo.address.street}</span>
-            </a>
-            <div className="flex items-center gap-2">
-              <Clock size={18} />
-              <span>11AM - 10PM Daily</span>
+          {/* Business Information - Clearly visible for Google verification */}
+          <div className="mt-12 sm:mt-16 px-4">
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-lg p-6 sm:p-8 max-w-2xl mx-auto">
+              <div className="space-y-4 text-center">
+                <div itemScope itemType="https://schema.org/Restaurant">
+                  <h2 className="text-white font-bold text-lg sm:text-xl mb-3">Visit Us</h2>
+                  <p itemProp="name" className="text-white font-bold text-xl sm:text-2xl mb-2">
+                    Smash and Spice
+                  </p>
+                  <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                    <p itemProp="streetAddress" className="text-gray-300 text-base sm:text-lg">
+                      {restaurantInfo.address.street}
+                    </p>
+                    <p itemProp="addressLocality" className="text-gray-300 text-base sm:text-lg">
+                      Highland Park, NJ
+                    </p>
+                    <p itemProp="postalCode" className="text-gray-300 text-base sm:text-lg">
+                      08904
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-2">
+                  <a
+                    href={`tel:+${formatPhoneForTel(restaurantInfo.phone)}`}
+                    itemProp="telephone"
+                    className="text-red-500 hover:text-red-400 font-semibold text-lg sm:text-xl"
+                  >
+                    {restaurantInfo.phone}
+                  </a>
+                </div>
+                <div className="pt-2">
+                  <p className="text-gray-400 text-sm sm:text-base">
+                    <Clock size={16} className="inline mr-2" />
+                    Monday-Thursday: 11AM-10PM | Friday-Saturday: 11AM-11PM | Sunday: 12PM-9PM
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* DoorDash Modal */}
+      {restaurantInfo.doordash && (
+        <DoorDashModal
+          isOpen={showDoorDashModal}
+          onClose={() => setShowDoorDashModal(false)}
+          onContinue={() => {
+            window.open(restaurantInfo.doordash, '_blank', 'noopener,noreferrer');
+            setShowDoorDashModal(false);
+          }}
+        />
+      )}
     </section>
   );
 }

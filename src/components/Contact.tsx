@@ -1,7 +1,10 @@
-import { MapPin, Phone, Clock, Mail, Navigation, Star } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Phone, Clock, Mail, Navigation, Star, ShoppingBag } from 'lucide-react';
 import { restaurantInfo } from '../config/restaurantInfo';
+import DoorDashModal from './DoorDashModal';
 
 export default function Contact() {
+  const [showDoorDashModal, setShowDoorDashModal] = useState(false);
   const formatPhoneForTel = (phone: string) => {
     const digits = phone.replace(/\D/g, '');
     // If it's a 10-digit US number, add country code 1
@@ -102,6 +105,16 @@ export default function Contact() {
               Get Directions
             </a>
 
+            {restaurantInfo.doordash && (
+              <button
+                onClick={() => setShowDoorDashModal(true)}
+                className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+              >
+                <ShoppingBag size={18} />
+                Order on DoorDash
+              </button>
+            )}
+
             <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg border border-gray-800/50">
               <p className="text-gray-300 mb-4">
                 Enjoyed your visit? We'd love to hear about it!
@@ -132,6 +145,18 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      {/* DoorDash Modal */}
+      {restaurantInfo.doordash && (
+        <DoorDashModal
+          isOpen={showDoorDashModal}
+          onClose={() => setShowDoorDashModal(false)}
+          onContinue={() => {
+            window.open(restaurantInfo.doordash, '_blank', 'noopener,noreferrer');
+            setShowDoorDashModal(false);
+          }}
+        />
+      )}
     </section>
   );
 }
